@@ -1,0 +1,86 @@
+<div class="container">
+  <div class="email-banner mat-elevation-z4">
+    <form [formGroup]="emailForm" (ngSubmit)="submitForm()" class="email-form">
+      <mat-form-field class="full-width">
+        <mat-label>Subject</mat-label>
+        <input matInput formControlName="subject" placeholder="Subject" />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email Body</mat-label>
+        <textarea
+          matInput
+          [rows]="8"
+          formControlName="body"
+          placeholder="Email Body"
+        ></textarea>
+      </mat-form-field>
+
+      <div formArrayName="companies" class="company-wrapper">
+        <div
+          *ngFor="let group of companies.controls; let i = index"
+          [formGroupName]="i"
+          class="company-group"
+        >
+          <mat-form-field class="full-width">
+            <mat-label>Company Name</mat-label>
+            <input
+              matInput
+              formControlName="company"
+              placeholder="Company Name"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Email Address</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              placeholder="Email Address"
+              type="email"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div dir="rtl">
+        <div class="button-row">
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            [ngClass]="{'btnDisable' : companies.invalid}"
+            (click)="addCompany()"
+          >
+            Add More
+          </button>
+          @if (companies.controls.length > 1) {
+          <button
+            mat-raised-button
+            color="accent"
+            type="button"
+            (click)="removeCompany()"
+          >
+            Remove
+          </button>
+          }
+        </div>
+      </div>
+
+      <div class="file-upload">
+        <label for="fileInput">Attachment:</label>
+        <input
+          id="fileInput"
+          type="file"
+          (change)="onFileChange($event)"
+          title="Choose a file to attach"
+        />
+      </div>
+    </form>
+  </div>
+        <div class="button-row">
+        <button mat-raised-button color="accent" class="button-fixed" type="submit" [ngClass]="{'btnDisable' : emailForm.invalid}">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="send"></mat-icon> Send
+        </button>
+      </div>
+</div>
