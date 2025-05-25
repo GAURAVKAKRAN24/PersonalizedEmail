@@ -1,0 +1,15 @@
+app-laptop-header {
+  display: block;
+}
+app-mobile-header {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  app-laptop-header {
+    display: none;
+  }
+  app-mobile-header {
+    display: block;
+  }
+}

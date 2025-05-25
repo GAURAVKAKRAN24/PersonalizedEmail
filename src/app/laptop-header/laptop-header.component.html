@@ -1,0 +1,27 @@
+<header>
+  <div class="header-col brand-logo">
+    <img src="/assets/images/logo_new.png" alt="Personalized Email brand logo" />
+  </div>
+  <div class="header-col menu">
+    <nav>
+      <ul>
+        <li class="active" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</li>
+        <li [routerLink]="['/sendEmails']"><mat-icon>email</mat-icon>Send mails</li>
+      </ul>
+    </nav>
+  </div>
+  <div class="header-col profile">
+    <div class="user">Gaurav</div>
+    <div class="user-profile" [matMenuTriggerFor]="menu">
+      <img
+        src="https://img.freepik.com/premium-vector/male-face-avatar-icon-set-flat-design-social-media-profiles_1281173-3806.jpg?semt=ais_hybrid&w=740"
+        alt=""
+      />
+    </div>
+  </div>
+</header>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item><mat-icon>settings</mat-icon> Setting</button>
+  <button mat-menu-item><mat-icon>logout</mat-icon>Logout</button>
+</mat-menu>

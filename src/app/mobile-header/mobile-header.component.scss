@@ -1,0 +1,46 @@
+$primary-color: rgb(167, 3, 167);
+
+header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+  display: flex;
+  // box-shadow: 0 0 10px #333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  .header-col {
+    box-sizing: border-box;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+  }
+  .brand-logo {
+    flex: 1 0;
+    cursor: pointer;
+
+    img{
+      height: 3rem;
+    }
+  }
+
+  .profile {
+    display: flex;
+    gap: 1.2rem;
+
+    .user-profile {
+        display: flex;
+        height: 100%;
+        align-items: center;
+      img {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    }
+  }
+}
