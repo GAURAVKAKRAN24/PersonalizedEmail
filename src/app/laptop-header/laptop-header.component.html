@@ -5,8 +5,8 @@
   <div class="header-col menu">
     <nav>
       <ul>
-        <li class="active" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</li>
-        <li [routerLink]="['/sendEmails']"><mat-icon>email</mat-icon>Send mails</li>
+        <li [routerLink]="['/']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon>home</mat-icon>Home</li>
+        <li [routerLink]="['/sendEmails']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }"><mat-icon>email</mat-icon>Send mails</li>
       </ul>
     </nav>
   </div>
