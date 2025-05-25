@@ -1,3 +1,8 @@
+.mail-container {
+  height: calc(100vh - 70px);
+  overflow: auto;
+}
+
 app-laptop-header {
   display: block;
 }
