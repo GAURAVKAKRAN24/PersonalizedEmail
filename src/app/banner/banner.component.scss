@@ -2,14 +2,14 @@
 .banner {
   height: 100vh;
 //   height: calc(100vh - 70px);
-  background-image: url("./../../assets/images/banner1.png");
+  background-image: url("/assets/images/banner1.png");
   background-repeat: no-repeat;
   background-position: 100%;
   background-position-y: -70px;
   background-size: cover;
   
   @media (max-width: 700px){
-    background-image: url("./../../assets/images/mob-banner.png");
+    background-image: url("/assets/images/mob-banner.png");
     background-repeat: no-repeat;
     background-position: 64%;
     background-position-y: 55px;
