@@ -2,7 +2,7 @@ export const EMAIL_Body = `Hi Hiring Manager,
 
 I hope you are doing well.
 
-I am writing to express my interest in the Front-End Developer position at {company}. With over 5 years of experience in building responsive and scalable web applications using Angular, I am confident in my ability to contribute effectively to your development team.
+I am writing to express my interest in the Front-End Developer position at {company}. With over 4 years of experience in building responsive and scalable web applications using Angular, I am confident in my ability to contribute effectively to your development team.
 
 Throughout my career, I have worked extensively with technologies such as Angular, HTML, CSS, JavaScript, TypeScript and version control systems like Git. I have a strong focus on writing clean, maintainable code and following best practices in UI development, performance optimization, and testing.
 
@@ -21,3 +21,4 @@ LinkedIn: https://www.linkedin.com/in/gaurav-kakran`
 export const EMAIL_SUBJECT = `Job Application for Angular Developer Role at {company}`
 
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+export const API_URL = 'https://personalizedemailapi-2.onrender.com/'

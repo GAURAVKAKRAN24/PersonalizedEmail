@@ -40,7 +40,6 @@ $bg-overlay: rgba(255, 255, 255, 0.85);
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: $gap;
 
         .company-group {
           display: flex;
@@ -97,8 +96,8 @@ $bg-overlay: rgba(255, 255, 255, 0.85);
 
   .button-fixed {
     position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: 2rem;
+    right: 2rem;
     border: 2px solid #ececec;
     background-color:darkgoldenrod;
     color: white;

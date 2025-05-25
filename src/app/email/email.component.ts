@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { EMAIL_Body, EMAIL_REGEX, EMAIL_SUBJECT } from '../../common/defaults';
+import { API_URL, EMAIL_Body, EMAIL_REGEX, EMAIL_SUBJECT } from '../../common/defaults';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -97,7 +97,7 @@ export class EmailComponent implements OnInit {
       formData.append('file', this.selectedFile);
     }
 
-    this.http.post('http://localhost:5000/send-emails', formData).subscribe(
+    this.http.post(`${API_URL}.send-emails`, formData).subscribe(
       (response) => {
         if(response) {
           this.openSnackBar('Emails sent successfully', 'Ok');
