@@ -15,12 +15,13 @@
     background-image: url("./../../assets/images/mob-banner.png");
     background-repeat: no-repeat;
     background-position: 64%;
-    background-position-y: -140px;
+    background-position-y: -150px;
     background-size: 100%;
   }
 
   .banner-wrapper {
-    padding: 2rem 1rem;
+    box-sizing: border-box;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -29,12 +30,13 @@
     gap: 1rem;
 
     @media (max-width: 600px) {
+      padding: 2rem 1rem;
       box-sizing: border-box;
       align-items: center;
       justify-content: flex-end;
 
-      .content{
-        margin-bottom: 1rem;
+      .start-now-btn {
+        margin-bottom: 3rem;
       }
 
       .content h2 {
@@ -48,20 +50,6 @@
         font-size: 1rem;
         max-width: 500px;
         text-align: center;
-      }
-
-      .start-now-btn {
-        text-align: center;
-        background-color: #ffffff;
-        color: #1976d2;
-        padding: 1rem 2.2rem;
-        border: none;
-        border-radius: 999px;
-        font-size: 1.2rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
       }
     }
 
