@@ -51,6 +51,17 @@ body {
   padding: 0 !important;
 }
 
+.mat-step-header{
+  pointer-events: none !important;
+}
+
+.mdc-button{
+  min-width: 0px !important;
+}
+mat-icon{
+  margin: 0 !important;
+}
+
 @keyframes blink {
   0% {
     opacity: 0;

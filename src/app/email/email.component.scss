@@ -133,19 +133,59 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 
-  input[type="file"] {
-    padding: 0.5rem;
+  .upload-label {
+    font-weight: 500;
+    color: #333;
+  }
+
+  .row{
+    display: flex;
+    gap: 2rem;
+  }
+  .custom-file-input {
+    background-color: #e0f2f1;
+    color: #00695c;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: 1px dashed #00695c;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #b2dfdb;
+    }
+
+    input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  .file-name {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    color: #444;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
 }
 
+
 .example-card-footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 
   .button-fixed {
-    padding: 0.75rem 1.5rem;
+    // padding: 0.75rem 1.5rem;
     font-weight: 600;
     text-transform: none;
     border-radius: 6px;
@@ -153,7 +193,7 @@ form {
 }
 
 .loader {
-  position: fixed;              // Makes it overlay the screen
+  position: fixed; // Makes it overlay the screen
   top: 0;
   left: 0;
   width: 100vw;
@@ -181,7 +221,6 @@ form {
   }
 }
 
-
 @keyframes blink {
   0%,
   100% {
@@ -195,4 +234,10 @@ form {
 .btnDisable {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.addMoreBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

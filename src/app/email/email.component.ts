@@ -104,7 +104,7 @@ export class EmailComponent implements OnInit {
   }
 
   onFileChange(event: any) {
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = event.target.files?.[0];
     this.emailForm.patchValue({
       attachment: this.selectedFile,
     });

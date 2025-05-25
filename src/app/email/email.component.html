@@ -34,21 +34,42 @@
                 </mat-form-field>
               </div>
               <div class="information">
-                <h4>Please follow these instructions</h4>
+                <p>Please follow these instructions</p>
                 <ul>
                   <li>
                     <strong>Gmail ID</strong> is your personal Gmail address.
                   </li>
                   <li>
-                    <strong>Password</strong> is your 16-digit Gmail App
-                    Password.
+                    <strong>Password</strong> is your 16-digit Gmail
+                    <strong>App Password</strong>.
+                  </li>
+                  <li>
+                    Use a
+                    <a
+                      href="https://myaccount.google.com/apppasswords"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      Google App Password </a
+                    >, not your regular Gmail password.
+                  </li>
+                  <li>
+                    You may need to enable
+                    <a
+                      href="https://myaccount.google.com/security"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      2-Step Verification
+                    </a>
+                    first.
                   </li>
                   <li>
                     To create an App Password, visit
                     <a
                       href="https://myaccount.google.com/apppasswords"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener"
                     >
                       Google App Passwords
                     </a>
@@ -59,11 +80,10 @@
             </form>
           </mat-card-content>
           <mat-card-footer class="example-card-footer">
-            <div>
-              <button mat-button matStepperNext [disabled]="configForm.invalid">
-                Next
-              </button>
-            </div>
+            <div></div>
+            <button mat-button matStepperNext [disabled]="configForm.invalid">
+              Next
+            </button>
           </mat-card-footer>
         </mat-card>
       </mat-step>
@@ -122,55 +142,70 @@
                   </mat-form-field>
                 </div>
               </div>
-
-              <div dir="rtl">
-                <div class="button-row">
-                  <button
-                    mat-raised-button
-                    color="accent"
-                    type="button"
-                    [ngClass]="{ btnDisable: companies.invalid }"
-                    (click)="addCompany()"
-                  >
-                    Add More
-                  </button>
-                  @if (companies.controls.length > 1) {
-                  <button
-                    mat-raised-button
-                    color="accent"
-                    type="button"
-                    (click)="removeCompany()"
-                  >
-                    Remove
-                  </button>
-                  }
-                </div>
-              </div>
-
               <div class="file-upload">
-                <label for="fileInput">Attachment:</label>
-                <input
-                  id="fileInput"
-                  type="file"
-                  (change)="onFileChange($event)"
-                  title="Choose a file to attach"
-                />
+                <label for="fileInput" class="upload-label">
+                  📎 Attachment:
+                </label>
+                <div class="row">
+                  <label for="fileInput" class="custom-file-input">
+                    <span>Choose File</span>
+                    <input
+                      id="fileInput"
+                      type="file"
+                      (change)="onFileChange($event)"
+                      title="Choose a file to attach"
+                    />
+                  </label>
+
+                  <!-- Show selected file name -->
+                  <div class="file-name" *ngIf="selectedFile?.name">
+                    📄 {{ selectedFile?.name }}
+                  </div>
+                </div>
               </div>
             </form>
           </mat-card-content>
           <mat-card-footer class="example-card-footer">
-            <button
-              mat-raised-button
-              color="accent"
-              class="button-fixed"
-              type="submit"
-              [ngClass]="{ btnDisable: emailForm.invalid }"
-              (click)="submitForm()"
-            >
-              <mat-icon fontIcon="send"></mat-icon>
-              Send
-            </button>
-            <button mat-button matStepperPrevious>Back</button>
+            <div class="button-row">
+              <button
+                mat-raised-button
+                color="accent"
+                type="button"
+                [ngClass]="{ btnDisable: companies.invalid }"
+                (click)="addCompany()"
+                title="Add more companies"
+              >
+                Add Companies
+              </button>
+              @if (companies.controls.length > 1) {
+              <button
+                mat-raised-button
+                color="accent"
+                type="button"
+                (click)="removeCompany()"
+                title="Remove last one"
+              >
+                Remove
+              </button>
+              }
+            </div>
+            <div class="button-row">
+              <button mat-button matStepperPrevious title="Previous step">
+                Back
+              </button>
+              <button
+                title="send"
+                mat-raised-button
+                color="accent"
+                class="button-fixed"
+                type="submit"
+                [ngClass]="{ btnDisable: emailForm.invalid }"
+                (click)="submitForm()"
+              >
+                <mat-icon fontIcon="send"></mat-icon>
+                <!-- Send -->
+              </button>
+            </div>
           </mat-card-footer>
         </mat-card>
       </mat-step>
@@ -179,9 +214,8 @@
 
   @if (isLoading) {
   <div class="loader">
-     {{loaderMessage}}<span class="dots">
-      <span>.</span><span>.</span><span>.</span>
-    </span>
+    {{ loaderMessage
+    }}<span class="dots"> <span>.</span><span>.</span><span>.</span> </span>
   </div>
   }
 </div>
