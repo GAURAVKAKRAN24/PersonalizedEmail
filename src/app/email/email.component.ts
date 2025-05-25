@@ -14,9 +14,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { API_URL, EMAIL_Body, EMAIL_REGEX, EMAIL_SUBJECT } from '../../common/defaults';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {
+  API_URL,
+  EMAIL_Body,
+  EMAIL_REGEX,
+  EMAIL_SUBJECT,
+} from '../../common/defaults';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-email',
@@ -32,13 +38,15 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class EmailComponent implements OnInit {
   emailForm: FormGroup = new FormGroup({});
   selectedFile: File | null = null;
   private _snackBar = inject(MatSnackBar);
+  isLoading = false;
   constructor(
     private readonly fb: FormBuilder,
     private readonly http: HttpClient
@@ -53,7 +61,7 @@ export class EmailComponent implements OnInit {
         }),
       ]),
       subject: [EMAIL_SUBJECT ?? '', Validators.required],
-      body: [EMAIL_Body ?? '' , Validators.required],
+      body: [EMAIL_Body ?? '', Validators.required],
       attachment: [null],
     });
   }
@@ -80,11 +88,12 @@ export class EmailComponent implements OnInit {
   onFileChange(event: any) {
     this.selectedFile = event.target.files[0];
     this.emailForm.patchValue({
-      attachment: this.selectedFile
-    })
+      attachment: this.selectedFile,
+    });
   }
 
   submitForm() {
+    this.isLoading = true;
     console.log(this.emailForm.value);
     const formData = new FormData();
     formData.append('subject', this.emailForm.value.subject);
@@ -97,16 +106,17 @@ export class EmailComponent implements OnInit {
       formData.append('file', this.selectedFile);
     }
 
-    this.http.post(`${API_URL}.send-emails`, formData).subscribe(
-      (response) => {
-        if(response) {
-          this.openSnackBar('Emails sent successfully', 'Ok');
+    this.http.post(`${API_URL}send-emails`, formData).subscribe(
+      (response: any) => {
+        if (response) {
+          this.isLoading = false;
+          this.openSnackBar(response.message, 'Ok');
           this.emailForm.reset();
         }
       },
       (error) => {
         console.error('Error:', error);
-        this.openSnackBar(error, 'Close')
+        this.openSnackBar(error, 'Close');
       }
     );
   }

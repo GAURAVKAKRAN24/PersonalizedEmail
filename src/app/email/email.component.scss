@@ -16,6 +16,11 @@ $bg-overlay: rgba(255, 255, 255, 0.85);
   min-height: 100vh;
   position: relative;
 
+  .heading h5{
+    font-family: sans-serif;
+    text-align: center;
+  }
+
   .email-banner {
     max-width: $max-width;
     height: 85vh;
@@ -47,7 +52,7 @@ $bg-overlay: rgba(255, 255, 255, 0.85);
           gap: $gap;
 
           @media (max-width: 600px) {
-            flex-direction: column;
+            flex-direction: row;
           }
 
           mat-form-field {
@@ -110,6 +115,18 @@ $bg-overlay: rgba(255, 255, 255, 0.85);
     .email-banner {
       height: 100vh;
     }
+  }
+
+  .loader{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
   }
 }
 
