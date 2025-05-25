@@ -11,11 +11,11 @@
     background-position-y: 60px;
   }
 
-    @media (max-width: 700px) {
+  @media (max-width: 700px) {
     background-image: url("./../../assets/images/mob-banner.png");
     background-repeat: no-repeat;
     background-position: 64%;
-    background-position-y: -160px;
+    background-position-y: -140px;
     background-size: 100%;
   }
 
@@ -26,38 +26,43 @@
     align-items: start;
     justify-content: center;
     height: 100%;
-    gap: 2rem;
+    gap: 1rem;
 
     @media (max-width: 600px) {
       box-sizing: border-box;
       align-items: center;
       justify-content: flex-end;
 
+      .content{
+        margin-bottom: 1rem;
+      }
+
       .content h2 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        line-height: 1.2;
+      }
 
-    .content p {
-      font-size: 1rem;
-      max-width: 500px;
-      text-align: center;
-    }
+      .content p {
+        font-size: 1rem;
+        max-width: 500px;
+        text-align: center;
+      }
 
-    .start-now-btn {
-      text-align: center;
-      background-color: #ffffff;
-      color: #1976d2;
-      padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 999px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-    }
+      .start-now-btn {
+        text-align: center;
+        background-color: #ffffff;
+        color: #1976d2;
+        padding: 1rem 2.2rem;
+        border: none;
+        border-radius: 999px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      }
     }
 
     .content {
