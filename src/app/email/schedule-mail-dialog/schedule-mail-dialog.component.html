@@ -1,0 +1,43 @@
+<mat-dialog-content>
+  <p class="mb-1-rem">Schedule your personalized mail</p>
+
+  <form [formGroup]="dateTimeForm" class="custom-field-wrapper">
+    <div class="custom-field">
+      <label for="html-date">Date</label>
+      <input
+        id="html-date"
+        type="date"
+        [min]="currentDate"
+        formControlName="scheduledDate"
+        class="styled-input"
+      />
+    </div>
+
+    <div class="custom-field">
+      <label for="html-time">Time</label>
+      <input
+        id="html-time"
+        type="time"
+        formControlName="scheduledTime"
+        class="styled-input"
+      />
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button
+    mat-button
+    mat-raised-button
+    color="accent"
+    (click)="sendScheduleMail()"
+    [disabled]="dateTimeForm.invalid || isLoading"
+  >
+    Schedule
+  </button>
+</mat-dialog-actions>
+
+@if (isLoading) {
+<app-loader [loaderMessage]="loaderMessage"></app-loader>
+}

@@ -5,7 +5,9 @@
       <mat-step [stepControl]="configForm">
         <mat-card class="example-card" appearance="outlined">
           <mat-card-header>
-            <mat-card-title>Gmail Setup with App Password</mat-card-title>
+            <mat-card-title
+              >Sender Gmail Setup with App Password</mat-card-title
+            >
           </mat-card-header>
           <mat-card-content>
             <form [formGroup]="configForm">
@@ -88,7 +90,7 @@
         </mat-card>
       </mat-step>
 
-      <!-- Step 2: Your Existing Email Form (unchanged) -->
+      <!-- Step 2: Email Form -->
       <mat-step [stepControl]="emailForm">
         <ng-template matStepLabel>Send Emails</ng-template>
         <mat-card class="example-card" appearance="outlined">
@@ -110,13 +112,40 @@
                 <mat-label>Email Body</mat-label>
                 <textarea
                   matInput
-                  [rows]="8"
+                  [rows]="10"
                   formControlName="body"
                   placeholder="Email Body"
                 ></textarea>
               </mat-form-field>
 
               <div formArrayName="companies" class="company-wrapper">
+                <div class="button-row">
+                  @if (companies.controls.length > 1) {
+                  <button
+                    mat-button
+                    type="button"
+                    (click)="removeConfirm()"
+                    title="Remove last one"
+                    [ngClass]="{'remove-indicate': isRemove}"
+                  >
+                    <span>{{isRemove ? 'Remove X' : 'Remove'}}</span>
+                  </button>
+                  } @if (companies.valid || companies.controls.length > 1) {
+                  <div @fadeInOut>
+                    <button
+                      mat-raised-button
+                      color="accent"
+                      type="button"
+                      [ngClass]="{ btnDisable: companies.invalid }"
+                      (click)="addCompany()"
+                      title="Add more companies"
+                      class="mb-1-rem"
+                    >
+                      Add Companies
+                    </button>
+                  </div>
+                  }
+                </div>
                 <div
                   *ngFor="let group of companies.controls; let i = index"
                   [formGroupName]="i"
@@ -132,7 +161,7 @@
                   </mat-form-field>
 
                   <mat-form-field class="full-width" appearance="outline">
-                    <mat-label>Email Address</mat-label>
+                    <mat-label>Recipient Email</mat-label>
                     <input
                       matInput
                       formControlName="email"
@@ -140,9 +169,14 @@
                       type="email"
                     />
                   </mat-form-field>
+                  @if (isRemove && companies.controls.length > 1) {
+                  <div @fadeInOut class="delete-row-wrapper" (click)="removeCompany(i)" (keydown)="removeCompany(i)">
+                    Remove row <mat-icon>delete</mat-icon>
+                  </div>
+                  }
                 </div>
               </div>
-              <div class="file-upload">
+              <div class="file-upload" #bottomOfForm>
                 <label for="fileInput" class="upload-label">
                   📎 Attachment:
                 </label>
@@ -166,29 +200,7 @@
             </form>
           </mat-card-content>
           <mat-card-footer class="example-card-footer">
-            <div class="button-row">
-              <button
-                mat-raised-button
-                color="accent"
-                type="button"
-                [ngClass]="{ btnDisable: companies.invalid }"
-                (click)="addCompany()"
-                title="Add more companies"
-              >
-                Add Companies
-              </button>
-              @if (companies.controls.length > 1) {
-              <button
-                mat-raised-button
-                color="accent"
-                type="button"
-                (click)="removeCompany()"
-                title="Remove last one"
-              >
-                Remove
-              </button>
-              }
-            </div>
+            <div></div>
             <div class="button-row">
               <button mat-button matStepperPrevious title="Previous step">
                 Back
@@ -197,13 +209,20 @@
                 title="send"
                 mat-raised-button
                 color="accent"
-                class="button-fixed"
-                type="submit"
+                class="button-fixed sendBtn"
                 [ngClass]="{ btnDisable: emailForm.invalid }"
-                (click)="submitForm()"
               >
-                <mat-icon fontIcon="send"></mat-icon>
-                <!-- Send -->
+                <div
+                  class="send"
+                  type="submit"
+                  (click)="submitForm()"
+                  (keydown)="submitForm()"
+                >
+                  Send
+                </div>
+                <div class="open-options" [matMenuTriggerFor]="sendOption">
+                  <mat-icon class="send-icon">arrow_drop_down</mat-icon>
+                </div>
               </button>
             </div>
           </mat-card-footer>
@@ -213,9 +232,12 @@
   </div>
 
   @if (isLoading) {
-  <div class="loader">
-    {{ loaderMessage
-    }}<span class="dots"> <span>.</span><span>.</span><span>.</span> </span>
-  </div>
+  <app-loader [loaderMessage]="loaderMessage"></app-loader>
   }
 </div>
+
+<mat-menu #sendOption="matMenu" yPosition="above">
+  <button mat-menu-item (click)="scheduleMail()">
+    <mat-icon class="mr-5">schedule</mat-icon>Schedule mail
+  </button>
+</mat-menu>

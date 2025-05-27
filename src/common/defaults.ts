@@ -21,4 +21,4 @@ LinkedIn: https://www.linkedin.com/in/gaurav-kakran`
 export const EMAIL_SUBJECT = `Job Application for Angular Developer Role at {company}`
 
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-export const API_URL = 'https://personalizedemailapi-2.onrender.com/'
+export const SUCCESS = 'success'

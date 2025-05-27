@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 html,
 body {
   height: 100%;
@@ -9,6 +8,18 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mr-5 {
+  margin-right: 5px !important;
+}
+
+.mb-1-rem {
+  margin-bottom: 1rem;
+}
+
+.remove-indicate {
+  border: 1px solid !important;
 }
 
 /* Scrollbar container */
@@ -43,23 +54,47 @@ body {
   animation-delay: 0.4s;
 }
 
-.mat-mdc-form-field-subscript-wrapper{
+.mat-mdc-form-field-subscript-wrapper {
   display: none !important;
 }
 
-.mat-horizontal-content-container{
+.mat-horizontal-content-container {
   padding: 0 !important;
 }
 
-.mat-step-header{
+.mat-step-header {
   pointer-events: none !important;
 }
 
-.mdc-button{
+.mdc-button {
   min-width: 0px !important;
 }
-mat-icon{
+mat-icon {
   margin: 0 !important;
+}
+
+.sendBtn {
+  padding: 0 !important;
+
+  .mdc-button__label {
+    height: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    .send {
+      padding: 0.5rem 1rem;
+    }
+
+    .open-options {
+      padding: 0.5rem;
+      border-left: 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 0.5rem;
+    }
+  }
 }
 
 @keyframes blink {
