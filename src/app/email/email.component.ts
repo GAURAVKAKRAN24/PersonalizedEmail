@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -14,7 +20,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { EMAIL_Body, EMAIL_REGEX, EMAIL_SUBJECT, SUCCESS } from '../../common/defaults';
+import {
+  EMAIL_Body,
+  EMAIL_REGEX,
+  EMAIL_SUBJECT,
+  SUCCESS,
+} from '../../common/defaults';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -22,11 +33,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 import { EmailService } from '../services/email.service';
-import {
-  MatDialog,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ScheduleMailDialogComponent } from './schedule-mail-dialog/schedule-mail-dialog.component';
-import { LoaderComponent } from "../loader/loader.component";
+import { LoaderComponent } from '../loader/loader.component';
 import { SENDER_GMAIL_PASSWORD, SENDER_MAIL } from '../environment/env';
 import { trigger, transition, style, animate } from '@angular/animations';
 @Component({
@@ -48,22 +57,25 @@ import { trigger, transition, style, animate } from '@angular/animations';
     MatCardModule,
     MatStepperModule,
     MatMenuModule,
-    LoaderComponent
-],
-animations: [
+    LoaderComponent,
+  ],
+  animations: [
     trigger('fadeInOut', [
       transition(':enter', [
         style({ opacity: 0, transform: 'scale(0.95)' }),
         animate('400ms ease-out', style({ opacity: 1, transform: 'scale(1)' })),
       ]),
       transition(':leave', [
-        animate('400ms ease-in', style({ opacity: 0, transform: 'scale(0.95)' })),
+        animate(
+          '400ms ease-in',
+          style({ opacity: 0, transform: 'scale(0.95)' })
+        ),
       ]),
     ]),
   ],
 })
 export class EmailComponent implements OnInit {
-  @ViewChild('bottomOfForm') bottomOfForm!: ElementRef
+  @ViewChild('bottomOfForm') bottomOfForm!: ElementRef;
   emailForm: FormGroup = new FormGroup({});
   configForm: FormGroup = new FormGroup({});
   selectedFile: File | null = null;
@@ -86,24 +98,25 @@ export class EmailComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ScheduleMailDialogComponent, {
-      data: this.emailService.combineFormData(this.configForm, this.emailForm, this.selectedFile),
+      data: this.emailService.combineFormData(
+        this.configForm,
+        this.emailForm,
+        this.selectedFile
+      ),
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed', result);
-      if(result.status === SUCCESS) {
+      if (result.status === SUCCESS) {
         this.resetEmailForm();
       }
     });
   }
-  
+
   generateConfigForm() {
     this.configForm = this.fb.group({
-      senderGmail: [
-        SENDER_MAIL,
-        [Validators.required, Validators.pattern(EMAIL_REGEX)],
-      ],
-      password: [SENDER_GMAIL_PASSWORD, Validators.required],
+      senderGmail: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+      password: ['', Validators.required],
     });
   }
 
@@ -111,8 +124,8 @@ export class EmailComponent implements OnInit {
     this.emailForm = this.fb.group({
       companies: this.fb.array([
         this.fb.group({
-          company: ['Test', Validators.required],
-          email: ['test@gmail.com', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
+          company: ['', Validators.required],
+          email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
         }),
       ]),
       subject: [EMAIL_SUBJECT ?? '', Validators.required],
@@ -137,10 +150,10 @@ export class EmailComponent implements OnInit {
       this.bottomOfForm.nativeElement.scrollIntoView({ behavior: 'smooth' });
     }, 100);
 
-    this.isRemove = false
+    this.isRemove = false;
   }
 
-  removeCompany(index:number) {
+  removeCompany(index: number) {
     if (this.companies.length > 1) {
       this.companies.removeAt(index);
       // this.companies.removeAt(this.companies.length - 1);
@@ -149,7 +162,7 @@ export class EmailComponent implements OnInit {
 
   removeConfirm() {
     this.isRemove = !this.isRemove;
-    if(this.companies.length === 1) {
+    if (this.companies.length === 1) {
       this.isRemove = false;
     }
   }
