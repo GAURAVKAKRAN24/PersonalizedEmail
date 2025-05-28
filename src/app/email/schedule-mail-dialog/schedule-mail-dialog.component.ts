@@ -89,7 +89,7 @@ export class ScheduleMailDialogComponent implements OnInit {
       this.data.append('schedule_time', scheduledTime);
       this.emailService.sendEmail(this.data).subscribe({
         next: (response: any) => this.successResponse(response.message),
-        error: (error) => this.failureResponse(error.message),
+        error: (error) => this.failureResponse(error.error),
       });
     } else {
       console.warn('Date and/or time not selected');
@@ -105,9 +105,9 @@ export class ScheduleMailDialogComponent implements OnInit {
 
   failureResponse(errorMsg: any) {
     this.isLoading = false;
-    console.error('Error:', errorMsg);
-    this.loaderMessage = `Error: ${errorMsg}`;
-    this.emailService.openSnackBar(errorMsg, 'Close');
+    console.error('Error:', errorMsg.error);
+    this.loaderMessage = `Error: ${errorMsg.error}`;
+    this.emailService.openSnackBar(errorMsg.error, 'Close');
   }
 
   ISOStringDate(date: Date, hours: number, minutes: number): string {

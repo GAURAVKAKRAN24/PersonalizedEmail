@@ -202,8 +202,8 @@ export class EmailComponent implements OnInit {
 
   failureResponse(error: any) {
     console.error('Error:', error);
-    this.emailService.openSnackBar(error.message, 'Close');
-    this.loaderMessage = `📩 ${error.message}`;
+    this.emailService.openSnackBar(error?.error?.error, 'Close');
+    this.loaderMessage = `📩 ${error?.error?.error}`;
     this.mailSendSuccess();
     this.resetEmailForm();
   }

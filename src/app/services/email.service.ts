@@ -34,7 +34,7 @@ export class EmailService {
       JSON.stringify(emailForm.get('companies')?.value)
     );
     if (selectedFile) {
-      formData.append('attachment', selectedFile, selectedFile.name);
+      formData.append('file', selectedFile, selectedFile.name);
     }
     return formData;
   }
